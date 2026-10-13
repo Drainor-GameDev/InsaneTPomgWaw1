@@ -16,7 +16,7 @@ bool Inventory::AddItem(const Item& item)
 {
     if (maxWeight < GetTotalWeight() + item.GetWeight())
     {
-        std::cout << "Pas assez de place pour : " + item.GetName() + "\n" << std::endl;
+        std::cout << "Pas assez de place pour : " << item.GetName() << std::endl;
         Print();
         std::cout << "Achete toi un meilleur sac sale pauvre" << std::endl;
         return false;
@@ -25,9 +25,14 @@ bool Inventory::AddItem(const Item& item)
     return true;
 }
 
-void Inventory::RemoveItem(const Item& item)
+void Inventory::RemoveItem(Item item)
 {
-    items.erase(std::remove(items.begin(), items.end(), item));
+    const Item target = item;   // copy bcs décalage relou
+
+    if (std::erase(items, target) > 0)
+        std::cout << target.GetName() << " removed" << std::endl;
+    else
+        std::cout << target.GetName() << " not found" << std::endl;
 }
 
 bool Inventory::RemoveItem(const std::string& name)
@@ -45,7 +50,7 @@ bool Inventory::RemoveItem(const std::string& name)
 
 float Inventory::GetTotalWeight() const
 {
-    int totalWeight = 0;
+    float totalWeight = 0;
     for (const Item& item : items)
     {
         totalWeight += item.GetWeight();
@@ -73,9 +78,9 @@ const Item* Inventory::GetMostValuable() const
     return mostValuable;
 }
 
-const Item* Inventory::FindByName(const std::string& name) const
+Item* Inventory::FindByName(const std::string& name)
 {
-    for (const Item& item : items)
+    for (Item& item : items)
     {
         if (item.GetName() == name) return &item;
     }
@@ -84,10 +89,10 @@ const Item* Inventory::FindByName(const std::string& name) const
 
 void Inventory::Print() const
 {
-    std::cout << "Weight : " + std::to_string(GetTotalWeight())  + " / " + std::to_string(maxWeight) + "\n";
+    std::cout << "Weight : " << std::to_string(GetTotalWeight())  << " / " << std::to_string(maxWeight) << "\n";
 
     for (const Item& item : items)
     {
-        std::cout << " - " + item.GetName() << std::endl;
+        std::cout << " - " << item.ToString() << std::endl;
     }
 }

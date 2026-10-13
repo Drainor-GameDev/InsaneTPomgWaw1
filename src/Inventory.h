@@ -14,12 +14,12 @@ public:
     explicit Inventory(float maxWeight);
 
     bool AddItem(const Item& item);
-    void RemoveItem(const Item& item);
+    void RemoveItem(Item item);
     bool RemoveItem(const std::string& name);
 
     float GetTotalWeight() const;
     const Item* GetMostValuable() const;
-    const Item* FindByName(const std::string& name) const;
+    Item* FindByName(const std::string& name);
     void Print() const;
 
 private:

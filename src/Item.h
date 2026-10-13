@@ -21,6 +21,9 @@ public:
     void SetPrice(int price);
     bool operator==(const Item& other) const;
 
+    void Print() const;
+    std::string ToString() const;
+
 private:
     std::string name;
 

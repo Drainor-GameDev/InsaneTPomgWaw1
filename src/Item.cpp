@@ -46,5 +46,15 @@ void Item::SetPrice(const int price)
 
 bool Item::operator==(const Item& other) const
 {
-    name == other.name;
+    return name == other.name;
+}
+
+void Item::Print() const
+{
+    std::cout << ToString() << std::endl;
+}
+
+std::string Item::ToString() const
+{
+    return name + " (" + std::to_string(weight) + "kg, " + std::to_string(price) + " po)";
 }
