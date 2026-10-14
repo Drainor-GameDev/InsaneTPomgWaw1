@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 
 #include "src/Inventory.h"
+#include "src/Composition/Simulation/SimulationManager.h"
 
 void EnchantCopy(Item item, int bonus)
 {
@@ -12,8 +13,11 @@ void Enchant(Item* item, int bonus)
     item->SetPrice(item->GetPrice() + bonus);
 }
 
-int main()
+/// TP1 Simulation
+void Tp1()
 {
+    std::cout << "TP 1 \n" << std::endl;
+
     auto inventory = Inventory(20);
     inventory.AddItem(Item("Epee courte", 3.5f, 40));
     inventory.AddItem(Item("Potion de soin", 0.5f, 25));
@@ -38,4 +42,22 @@ int main()
 
     std::cout << "Most valuable : " << inventory.GetMostValuable()->ToString() << std::endl;
     inventory.Print();
+
+    std::cout << "\nTP 1 end \n" << std::endl;
+}
+
+/// TP2 Simulation
+void Tp2()
+{
+    std::cout << "TP 2 \n" << std::endl;
+
+    auto simulation = SimulationManager();
+    simulation.RunSimulation();
+}
+
+int main()
+{
+    Tp1();
+
+    Tp2();
 }
