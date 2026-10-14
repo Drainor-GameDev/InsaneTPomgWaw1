@@ -26,3 +26,18 @@ A.3
 La 4e devrait pouvoir hériter de Walking et flying pour fonctionner
 A.4
 Le problème serait qu'il y aurait des conflicts d'héritage car flying et walking héritent de Monster
+
+C.3
+Aucune tout est là !!!!
+
+D.1
+Il ne faut que 7 classes
+D.2
+Dans un MMO l'héritage reste primordial pour la gestion des entités, avec la logique réseau. Un ennemi est une entité, un joueur est une entitée etc...
+D.3
+Monsters -> GameObject
+IMovement, IAttack -> interfaces de components
+Fly, Walk... -> Component
+D.4
+Le fly est possédé par le unique ptr du monster qui est possédé par le verctor du Simulation manager
+Le fly est immédiatement détruit quand le unique ptr reçoit un nouvel oject 
