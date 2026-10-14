@@ -18,3 +18,8 @@ void Monster::TakeTurn(const std::string& target) const
     movement->Move(name);
     attack->Attack(name, target);
 }
+
+void Monster::SetMovement(std::unique_ptr<IMovement> newMovement)
+{
+    movement = std::move(newMovement);
+}

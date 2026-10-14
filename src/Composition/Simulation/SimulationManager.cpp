@@ -4,6 +4,8 @@
 
 #include "SimulationManager.h"
 
+#include <iostream>
+
 #include "../Actions/Bow.h"
 #include "../Actions/Fly.h"
 #include "../Actions/Melee.h"
@@ -19,6 +21,18 @@ void SimulationManager::RunSimulation()
     {
         monster.TakeTurn("Fergal Jenkins");
     }
+
+    std::cout << "\nBat part : \n" << std::endl;
+
+    Monster& bat = monsters[2];
+
+    bat.TakeTurn("Fergal Jenkins");
+
+    std::cout << "\nBat hit by Fergal Jenkins : \n" << std::endl;
+
+    bat.SetMovement(std::make_unique<Walk>());
+
+    bat.TakeTurn("Fergal Jenkins");
 }
 
 void SimulationManager::Setup()

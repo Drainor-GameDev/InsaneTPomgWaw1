@@ -17,6 +17,7 @@ class Monster {
 public:
     Monster(std::string name, std::unique_ptr<IMovement> movement, std::unique_ptr<IAttack> attack);
     void TakeTurn(const std::string& target) const;
+    void SetMovement(std::unique_ptr<IMovement> newMovement);
 private:
     std::string name;
     std::unique_ptr<IMovement> movement;
