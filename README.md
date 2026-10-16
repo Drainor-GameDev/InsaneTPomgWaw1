@@ -55,3 +55,6 @@ Et on gagne en lisibilité et séparation des tâches
 C.1 On as besoin de la commande de l'input
 C.2 Car on ne peut pas garder une stack trace des actions
 Il faudrait créer un pile d'action avec les Command en objets créés et non réutilisés 
+
+E.3 Car le jeu est déterministe et il n'y a aucun facteur aléatoire
+Dans un jeu de dé par exemple le résultat peut varier

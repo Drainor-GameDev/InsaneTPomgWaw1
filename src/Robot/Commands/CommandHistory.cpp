@@ -4,10 +4,15 @@
 
 #include "CommandHistory.h"
 
+#include <iostream>
+
 void CommandHistory::Execute(std::unique_ptr<ICommand> command, Level& level)
 {
     if (command.get()->Execute(level) && command.get()->IsUndoable())
+    {
+        undone.clear();
         done.push_back(std::move(command));
+    }
 }
 
 bool CommandHistory::Undo(Level& level)
@@ -35,4 +40,16 @@ bool CommandHistory::Redo(Level& level)
 int CommandHistory::GetMoveCount() const
 {
     return done.size();
+}
+
+void CommandHistory::Replay(Level& freshLevel) const
+{
+    freshLevel.Print();
+    int moveNumber = 1;
+    for (const auto& cmd : done)
+    {
+        cmd->Execute(freshLevel);
+        std::cout << "Coup " << moveNumber++ << '\n';
+        freshLevel.Print();
+    }
 }

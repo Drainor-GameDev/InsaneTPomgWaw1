@@ -60,6 +60,8 @@ void GameLoop::Run()
         if (level.IsSolved())
         {
             std::cout << "Bravo, niveau terminé !\n";
+            Level freshLevel(kLevel);
+            commandHistory.Replay(freshLevel);
             break;
         }
         std::cout << "> ";

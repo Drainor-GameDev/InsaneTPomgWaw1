@@ -15,6 +15,7 @@ public:
     bool Undo(Level& level);
     bool Redo(Level& level);
     int GetMoveCount() const;
+    void Replay(Level& freshLevel) const;
 private:
     std::vector<std::unique_ptr<ICommand>> done;
     std::vector<std::unique_ptr<ICommand>> undone;
