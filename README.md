@@ -1,9 +1,13 @@
+TP1
+
 D.1 Le additem prend un const Item& car & prend l'objet tel quel sans faire une copie innutile et const car c'est une contraine du cpp qui force à ne pas faire de modif sur un objet temporaire
 D.2 Error: passing 'const Item' as 'this' argument discards qualifiers [-fpermissive]
    17 |     if (maxWeight < GetTotalWeight() + item.GetWeight())
    Le premier const assure que la valeur de retour ne doit pas être modifiée et le 2e assure que la fct ne modifiera pas l'objet qui l'appelle
 D.3 Le programme alloue bien de la mémoire dynamiquement (le std::vector et les std::string), mais jamais manuellement avec new. Ces objets suivent le principe RAII : ils libèrent eux-mêmes leur mémoire dans leur destructeur. À la fin de main, inventory sort de portée, son destructeur est appelé, ce qui détruit le vecteur, qui détruit à son tour chaque Item et leurs chaînes. Toute la mémoire est donc libérée automatiquement.
 D.4 Non il peut ne plus être valide car le vector peut se déplacer en cas de besoin de place donc le pointeur pourraît être une tout autre chose ce qui est assez problématique
+
+TP2
 
 A.1 
 Monster
@@ -41,3 +45,13 @@ Fly, Walk... -> Component
 D.4
 Le fly est possédé par le unique ptr du monster qui est possédé par le verctor du Simulation manager
 Le fly est immédiatement détruit quand le unique ptr reçoit un nouvel oject 
+
+TP3
+
+B.5 On gagne en rapidité d'implémentation on peut ajouter des bindings sans avoir à faire un énorme switch case de plus en plus illisible
+Il aurait fallu ajouter des if dans les cases
+Et on gagne en lisibilité et séparation des tâches
+
+C.1 On as besoin de la commande de l'input
+C.2 Car on ne peut pas garder une stack trace des actions
+Il faudrait créer un pile d'action avec les Command en objets créés et non réutilisés 

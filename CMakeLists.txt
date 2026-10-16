@@ -4,10 +4,10 @@ project(.)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(InsaneTPomgWaw1 main.cpp
-        src/Item.cpp
-        src/Item.h
-        src/Inventory.cpp
-        src/Inventory.h
+        src/Inventory/Item.cpp
+        src/Inventory/Item.h
+        src/Inventory/Inventory.cpp
+        src/Inventory/Inventory.h
         src/Composition/Interfaces/IMovement.h
         src/Composition/Interfaces/IAttack.h
         src/Composition/Actions/Walk.cpp
@@ -26,4 +26,15 @@ add_executable(InsaneTPomgWaw1 main.cpp
         src/Composition/Simulation/SimulationManager.cpp
         src/Composition/Simulation/SimulationManager.h
         src/Composition/Monsters/Monster.cpp
+        src/Robot/Level.cpp
+        src/Robot/Level.h
+        src/Robot/GameLoop.cpp
+        src/Robot/GameLoop.h
+        src/Robot/Commands/ICommand.h
+        src/Robot/Commands/MoveCommand.cpp
+        src/Robot/Commands/MoveCommand.h
+        src/Robot/Commands/InputHandler.cpp
+        src/Robot/Commands/InputHandler.h
+        src/Robot/Commands/ReBindCommand.cpp
+        src/Robot/Commands/ReBindCommand.h
 )

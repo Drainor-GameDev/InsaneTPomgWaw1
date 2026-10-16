@@ -1,7 +1,8 @@
 ﻿#include <iostream>
 
-#include "src/Inventory.h"
+#include "src/Inventory/Inventory.h"
 #include "src/Composition/Simulation/SimulationManager.h"
+#include "src/Robot/GameLoop.h"
 
 void EnchantCopy(Item item, int bonus)
 {
@@ -55,9 +56,20 @@ void Tp2()
     simulation.RunSimulation();
 }
 
+/// TP3 Simulation
+void Tp3()
+{
+    std::cout << "TP 3 \n" << std::endl;
+
+    auto gameLoop = GameLoop();
+    gameLoop.Run();
+}
+
 int main()
 {
     Tp1();
 
     Tp2();
+
+    Tp3();
 }
