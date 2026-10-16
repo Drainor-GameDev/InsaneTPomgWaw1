@@ -58,3 +58,12 @@ Il faudrait créer un pile d'action avec les Command en objets créés et non r�
 
 E.3 Car le jeu est déterministe et il n'y a aucun facteur aléatoire
 Dans un jeu de dé par exemple le résultat peut varier
+
+F.1 il faut juste une cmd restart level qui reset le level et qui garde l'ancien état pour l'undo si il faut
+
+F.2 Les cmd sont release par les smart pointer car plus rien ne pointe vers eux
+
+F.3 Les spells par exemple dans un mmo par exemple des spells sont des cmd, le spell deviens un simple objet qui peut être bind, affiché, exécuté de n'importe quelle façon
+L'IA Peut avoir les même cmd de controle qu'un joueur, ce qui permet par exemple de faire des bot de test façillement
+
+F.4 Une interface de cmd, des actions qui sont des cmd avec les info nécéssaires à l'instanciation/ destructions d'entités par exemple et d'une stack
