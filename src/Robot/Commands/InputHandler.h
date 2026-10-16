@@ -8,15 +8,18 @@
 #include <memory>
 
 #include "ICommand.h"
+#include <functional>
+
+using CommandFactory = std::function<std::unique_ptr<ICommand>()>;
 
 
 class InputHandler {
 public:
-    void Bind(char key, std::unique_ptr<ICommand> command);
+    void Bind(char key, CommandFactory);
     void Unbind(char key);
-    ICommand* GetCommand(char key) const;
+    std::unique_ptr<ICommand> GetCommand(char key) const;
 private:
-    std::map<char, std::unique_ptr<ICommand>> commands;
+    std::map<char, CommandFactory> commands;
 };
 
 

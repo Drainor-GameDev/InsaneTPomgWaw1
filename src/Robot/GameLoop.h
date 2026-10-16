@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 
+#include "Commands/CommandHistory.h"
 #include "Commands/InputHandler.h"
 
 
@@ -25,6 +26,7 @@ private:
         "########",
         };
     InputHandler inputHandler;
+    CommandHistory commandHistory;
     bool azerty = true;
 };
 

@@ -37,4 +37,10 @@ add_executable(InsaneTPomgWaw1 main.cpp
         src/Robot/Commands/InputHandler.h
         src/Robot/Commands/ReBindCommand.cpp
         src/Robot/Commands/ReBindCommand.h
+        src/Robot/Commands/CommandHistory.cpp
+        src/Robot/Commands/CommandHistory.h
+        src/Robot/Commands/UndoCommand.cpp
+        src/Robot/Commands/UndoCommand.h
+        src/Robot/Commands/RedoCommand.cpp
+        src/Robot/Commands/RedoCommand.h
 )

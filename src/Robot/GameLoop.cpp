@@ -21,23 +21,29 @@
 #endif
 
 #include "Level.h"
+#include "Commands/CommandHistory.h"
 #include "Commands/InputHandler.h"
 #include "Commands/MoveCommand.h"
 #include "Commands/ReBindCommand.h"
+#include "Commands/RedoCommand.h"
+#include "Commands/UndoCommand.h"
 
 void GameLoop::Init()
 {
     inputHandler = InputHandler();
+    commandHistory = CommandHistory();
     Bind();
 }
 
 void GameLoop::Bind()
 {
-    inputHandler.Bind('m', std::make_unique<ReBindCommand>(ReBindCommand(inputHandler, azerty)));
-    inputHandler.Bind('z', std::make_unique<MoveCommand>(MoveCommand(0,-1)));
-    inputHandler.Bind('q', std::make_unique<MoveCommand>(MoveCommand(-1,0)));
-    inputHandler.Bind('s', std::make_unique<MoveCommand>(MoveCommand(0,1)));
-    inputHandler.Bind('d', std::make_unique<MoveCommand>(MoveCommand(1,0)));
+    inputHandler.Bind('m', Commands::Rebind(inputHandler, azerty));
+    inputHandler.Bind('u', Commands::Undo(commandHistory));
+    inputHandler.Bind('r', Commands::Redo(commandHistory));
+    inputHandler.Bind('z', Commands::Move(0,-1));
+    inputHandler.Bind('q', Commands::Move(-1,0));
+    inputHandler.Bind('s', Commands::Move(0,1));
+    inputHandler.Bind('d', Commands::Move(1,0));
 }
 
 void GameLoop::Run()
@@ -64,11 +70,10 @@ void GameLoop::Run()
             continue;
         if (line[0] == 'x')
             break;
-        bool pushed = false;
         auto cmd = inputHandler.GetCommand(line[0]);
         if (cmd == nullptr)
             std::cout << "Touche inconnue\n";
         else
-            cmd->Execute(level);
+            commandHistory.Execute(std::move(cmd), level);
     }
 }

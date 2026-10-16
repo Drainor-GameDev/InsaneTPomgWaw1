@@ -4,8 +4,20 @@
 
 #include "MoveCommand.h"
 
-void MoveCommand::Execute(Level& level)
+bool MoveCommand::Execute(Level& level)
 {
-    auto pushedBox = false;
-    level.TryMoveRobot(dx, dy, pushedBox);
+    return level.TryMoveRobot(dx, dy, pushedBox);
+}
+
+void MoveCommand::Undo(Level& level)
+{
+    level.UndoMove(dx, dy, pushedBox);
+}
+
+namespace Commands
+{
+    CommandFactory Move(int dx, int dy)
+    {
+        return [dx, dy]() { return std::make_unique<MoveCommand>(dx, dy); };
+    }
 }
